@@ -22,6 +22,7 @@ export class UserRouter {
 
         this.router.post('/add-user', (req, res, next) => {
             try {
+                console.log(req.query);
                 const result = this.userController.add(req.body.username);
                 res.status(200).json(result);
             } catch (error: unknown) {

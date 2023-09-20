@@ -6,7 +6,7 @@ export class UserController {
 
     add(username: string): User {
         if (this.isEmpty(username)) {
-            throw new Error('Username cannot be empty');
+            throw new Error('Username cannot be empty '+ username);
         }
         // is the username whitespaced ?
         if (this.isWhitespaced(username)) {
@@ -24,7 +24,7 @@ export class UserController {
     }
 
     private isEmpty(value: string): boolean {
-        if (value.trim() === null || value.trim() === undefined) {
+        if (value === null || value === undefined) {
             return true;
         } else {
             return false;
