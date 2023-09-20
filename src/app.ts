@@ -1,7 +1,3 @@
-import express from 'express';
+import { ExpressApplication } from './infrastructure/express-application';
 
-const app = express();
-const port = 3000;
-
-app.listen(port, () => console.log(`> Listening on port ${port}`));
-app.get("/",function(req,res){ res.send('Test')});
+new ExpressApplication().bootstrap();
