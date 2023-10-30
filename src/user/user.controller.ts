@@ -2,7 +2,7 @@ import { User } from './user';
 import { UserService } from './user.service';
 
 export class UserController {
-    constructor(private userService: UserService) {}
+    constructor(private userService: UserService) { }
 
     add(
         username: string,
@@ -70,6 +70,9 @@ export class UserController {
 
     getById(id: number): User | null {
         return this.userService.getById(id);
+    }
+    addPalette(id: number, palette: string): string | null {
+        return this.userService.addPalette(id, palette);
     }
 
     private isEmpty(value: string): boolean {

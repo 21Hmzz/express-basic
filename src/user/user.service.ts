@@ -10,4 +10,5 @@ export interface UserService {
     ): User;
     getById(id: number): User | null;
     login(email: string, password: string): User | null;
+    addPalette(id: number, palette: string): string | null;
 }

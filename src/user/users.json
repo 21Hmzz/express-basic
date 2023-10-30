@@ -1,1 +1,48 @@
-[{"id":1,"username":"hamza","password":"hamza","email":"hamza@gmail.com","firstName":"Hamza","lastName":"bella","palettesSaved":[]}]
+[
+    {
+        "id": 1,
+        "username": "hamza",
+        "password": "hamza",
+        "email": "hamza@gmail.com",
+        "firstName": "Hamza",
+        "lastName": "bella",
+        "palettesSaved": [
+            {
+                "id": 1,
+                "name": "palette1",
+                "colors": [
+                    "FFF333",
+                    "000000",
+                    "000000",
+                    "000000",
+                    "000000"
+                ]
+            },
+            {
+                "id": 2,
+                "name": "palette2",
+                "colors": [
+                    "EBEBE3",
+                    "000000",
+                    "000000",
+                    "000000",
+                    "000000"
+                ]
+            },
+            {
+                "id": 3,
+                "name": "palette3",
+                "colors": [
+                    null
+                ]
+            },
+            {
+                "id": 4,
+                "name": "palette4",
+                "colors": [
+                    "EBEBE3,EBEBE3,EBEBE3,EBEBE3"
+                ]
+            }
+        ]
+    }
+]

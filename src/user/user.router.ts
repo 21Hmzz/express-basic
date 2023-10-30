@@ -20,6 +20,17 @@ export class UserRouter {
             }
         });
 
+        this.router.patch('/palettes/:id', (req, res, next) => {
+            try {
+                const result = this.userController.addPalette(
+                    parseInt(req.params.id),
+                    req.body.palette,
+                );
+                res.status(200).json(result);
+            } catch (error: unknown) {
+                next(error);
+            }
+        });
         this.router.post('/add-user', (req, res, next) => {
             try {
                 const result = this.userController.add(
