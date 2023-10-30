@@ -45,7 +45,7 @@ export class ExpressApplication {
     }
 
     private configureServer(): void {
-        this.server = new ExpressServer( this.port,this.expressRouter);
+        this.server = new ExpressServer(this.port, this.expressRouter);
     }
 
     private getPort(): string {

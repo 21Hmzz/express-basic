@@ -1,6 +1,1 @@
-[
-    { "id": 1, "username": "Hamza" },
-    { "id": 2, "username": "Bella" },
-    { "id": 3, "username": "testz" },
-    { "id": 4, "username": "test2" }
-]
+[{"id":1,"username":"hamza","password":"hamza","email":"hamza@gmail.com","firstName":"Hamza","lastName":"bella","palettesSaved":[]}]

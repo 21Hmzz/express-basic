@@ -1,6 +1,7 @@
 import express from 'express';
 import { ExpressRouter } from './express-router';
 import bodyParser from 'body-parser';
+import cors from 'cors';
 
 export class ExpressServer {
     private express = express();
@@ -9,6 +10,7 @@ export class ExpressServer {
         private port: string,
         private expressRouter: ExpressRouter,
     ) {
+        this.express.use(cors());
         this.configureBodyParser();
         this.configureRoutes();
     }
@@ -24,5 +26,12 @@ export class ExpressServer {
 
     private configureRoutes(): void {
         this.express.use('/api', this.expressRouter.router);
+        this.express.use(
+            cors({
+                origin: '*',
+                credentials: true,
+            }),
+        );
+        this.express.options('*', cors());
     }
 }
