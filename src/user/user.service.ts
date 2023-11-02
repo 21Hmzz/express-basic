@@ -10,5 +10,7 @@ export interface UserService {
     ): User;
     getById(id: number): User | null;
     login(email: string, password: string): User | null;
-    addPalette(id: number, palette: string): string | null;
+    addPalette(id: number, palette: object, name: string): string | null;
+    deletePalette(id: number, paletteId: number): string | null;
+    getByJWT(id: number): User | null;
 }

@@ -44,6 +44,18 @@ export class UserJSONService implements UserService {
         return user;
     }
 
+    getByJWT(id: number): User | null {
+        var fs = require('fs');
+        var users = JSON.parse(fs.readFileSync('src/user/users.json'));
+        var user = users.find((user: { id: number }) => user.id === id);
+
+        if (user === undefined) {
+            return null;
+        }
+        delete user.password;
+        return user;
+    }
+
     login(email: string, password: string): User | null {
         var fs = require('fs');
         var users = JSON.parse(fs.readFileSync('src/user/users.json'));
@@ -58,20 +70,21 @@ export class UserJSONService implements UserService {
         return user;
     }
 
-    addPalette(id: number, palette: string): string | null {
+    addPalette(id: number, palette: object, name: string): string | null {
         var fs = require('fs');
         var users = JSON.parse(fs.readFileSync('src/user/users.json'));
         var user = users.find((user: { id: number }) => user.id === id);
         if (user === undefined) {
             return null;
         }
-        palette = JSON.parse(palette);
+        if (name === undefined || name === '') {
+            name = 'New Palette';
+        }
         var newPalette = {
             id: user.palettesSaved.length + 1,
-            name: 'palette' + (user.palettesSaved.length + 1),
+            name: name,
             colors: palette,
-
-        }
+        };
         user.palettesSaved.push(newPalette);
         fs.writeFile(
             'src/user/users.json',
@@ -82,6 +95,32 @@ export class UserJSONService implements UserService {
                 }
             },
         );
-        return "Palette added";
+        return 'Palette added';
+    }
+    deletePalette(id: number, paletteId: number): string | null {
+        var fs = require('fs');
+        var users = JSON.parse(fs.readFileSync('src/user/users.json'));
+        var user = users.find((user: { id: number }) => user.id === id);
+        if (user === undefined) {
+            return null;
+        }
+        var palette = user.palettesSaved.find(
+            (palette: { id: number }) => palette.id === paletteId,
+        );
+        if (palette === undefined) {
+            return null;
+        }
+        var index = user.palettesSaved.indexOf(palette);
+        user.palettesSaved.splice(index, 1);
+        fs.writeFile(
+            'src/user/users.json',
+            JSON.stringify(users),
+            (err: any) => {
+                if (err) {
+                    console.error(err);
+                }
+            },
+        );
+        return 'Palette deleted';
     }
 }

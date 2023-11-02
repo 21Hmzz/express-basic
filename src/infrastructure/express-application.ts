@@ -2,6 +2,8 @@ import { ExpressRouter } from './express-router';
 import { ExpressServer } from './express-server';
 import { UserJSONService } from '../user/user.json-service';
 import { UserService } from '../user/user.service';
+import { AuthJSONService } from '../auth/auth.json-service';
+import { AuthService } from '../auth/auth.service';
 import * as dotenv from 'dotenv';
 
 export class ExpressApplication {
@@ -9,6 +11,7 @@ export class ExpressApplication {
     private port!: string;
     private server!: ExpressServer;
     private userService!: UserService;
+    private authService!: AuthService;
 
     constructor() {
         this.configureApplication();
@@ -38,10 +41,14 @@ export class ExpressApplication {
 
     private configureServices(): void {
         this.userService = new UserJSONService();
+        this.authService = new AuthJSONService();
     }
 
     private configureExpressRouter(): void {
-        this.expressRouter = new ExpressRouter(this.userService);
+        this.expressRouter = new ExpressRouter(
+            this.userService,
+            this.authService,
+        );
     }
 
     private configureServer(): void {

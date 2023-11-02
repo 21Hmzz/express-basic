@@ -2,7 +2,7 @@ import { User } from './user';
 import { UserService } from './user.service';
 
 export class UserController {
-    constructor(private userService: UserService) { }
+    constructor(private userService: UserService) {}
 
     add(
         username: string,
@@ -71,8 +71,15 @@ export class UserController {
     getById(id: number): User | null {
         return this.userService.getById(id);
     }
-    addPalette(id: number, palette: string): string | null {
-        return this.userService.addPalette(id, palette);
+
+    getByJWT(id: number): User | null {
+        return this.userService.getByJWT(id);
+    }
+    addPalette(id: number, palette: object, name: string): string | null {
+        return this.userService.addPalette(id, palette, name);
+    }
+    deletePalette(id: number, paletteId: number): string | null {
+        return this.userService.deletePalette(id, paletteId);
     }
 
     private isEmpty(value: string): boolean {
